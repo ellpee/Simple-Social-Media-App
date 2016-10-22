@@ -6,6 +6,7 @@
 <body ng-app='app'>
   <div ng-controller='PostsCtrl' class='container'>
     <h1>Recent Posts</h1>
+      <input ng-model='postBody' class='form-control' />
       <button ng-click='addPost()' class='btn btn-default'>Add Post</button>
     <ul class='list-group'>
       <li ng-repeat='post in posts' class='list-group-item'>
@@ -16,19 +17,39 @@
   </div>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js'></script>
     <script>
-  var app = angular.module('app', [])
-  app.controller('PostsCtrl', function ($scope) {
-    $scope.posts = [
-      {
-        username: 'LenoraPorter',
-        body: 'I like to start building all Angular features following this approach, first by dropping static HTML into a page and then replicating it with dynamic Angular code.'
-      },
-      {
-        username: 'Ellpee',
-        body: 'Okay, I see! Awesome Tips!'
+    // create our app module
+    var app = angular.module('app', [])
+
+    // create the PostsCtrl module
+    // dependency inject $scope
+    app.controller('PostsCtrl', function ($scope) {
+
+      // When "Add Post" button on line 10 is clicked run this function
+      $scope.addPost = function () {
+        // Add text only if user inputs text
+        if ($scope.postBody) {
+          // Add New Post to the beginning of the array
+          $scope.posts.unshift({
+            username: 'Moderator',
+            body: $scope.postBody // use the text entered
+          })
+          // clear the input field
+          $scope.postBody = null
+        }
       }
-    ]
-  })
-</script>
+
+      // starting data
+      $scope.posts = [
+        {
+          username: 'LenoraPorter',
+          body: 'I like to start building all Angular features following this approach, first by dropping static HTML into a page and then replicating it with dynamic Angular code.'
+        },
+        {
+          username: 'EllPee',
+          body: 'Okay, I see! Awesome Tips!'
+        }
+      ]
+    })
+  </script>
 </body>
 </html>
