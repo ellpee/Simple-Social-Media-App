@@ -8,7 +8,7 @@
     <h1>Recent Posts</h1>
     <ul class='list-group'>
       <li class='list-group-item'>
-        <strong>@Lenora Porter</strong>
+        <strong>@LenoraPorter</strong>
         <span>I like to start building all Angular features following this approach, first by dropping static HTML into a page and then replicating it with dynamic Angular code.</span>
       </li>
       <li class='list-group-item'>
@@ -18,5 +18,20 @@
     </ul>
   </div>
     <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js'></script>
+    <script>
+  var app = angular.module('app', [])
+  app.controller('PostsCtrl', function ($scope) {
+    $scope.posts = [
+      {
+        username: 'LenoraPorter',
+        body: 'I like to start building all Angular features following this approach, first by dropping static HTML into a page and then replicating it with dynamic Angular code.'
+      },
+      {
+        username: 'Ellpee',
+        body: 'Okay, I see! Awesome Tips!'
+      }
+    ]
+  })
+</script>
 </body>
 </html>
